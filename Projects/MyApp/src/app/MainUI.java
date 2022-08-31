@@ -7,6 +7,7 @@
 package app;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,8 +18,13 @@ public class MainUI extends javax.swing.JFrame {
     /**
      * Creates new form MainUI
      */
+    
+    DefaultTableModel model;
+    
+    
     public MainUI() {
         initComponents();
+        model = (DefaultTableModel) tblData.getModel();
     }
 
     /**
@@ -30,19 +36,19 @@ public class MainUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbl_abcFirst = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        btnProcess = new javax.swing.JButton();
         lbl2 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        btnProcess2 = new javax.swing.JButton();
-        txtUserInput = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
+        city = new javax.swing.JLabel();
+        degree = new javax.swing.JLabel();
+        txtDegree = new javax.swing.JTextField();
+        txtCity = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        taComment = new javax.swing.JTextArea();
-        jButton2 = new javax.swing.JButton();
+        tblData = new javax.swing.JTable();
+        btnAdd = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
         mnuTest = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -66,55 +72,53 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        lbl_abcFirst.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
-        lbl_abcFirst.setText("My First GUI Application");
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/View Bills & Order Placed Details.png"))); // NOI18N
-
-        btnProcess.setText("Process");
-        btnProcess.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcessActionPerformed(evt);
-            }
-        });
-
         lbl2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbl2.setForeground(new java.awt.Color(204, 0, 0));
 
-        jLabel2.setText("jLabel2");
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel2MouseExited(evt);
+        name.setText("Name : ");
+
+        city.setText("City :");
+
+        degree.setText("Degree : ");
+
+        tblData.setAutoCreateRowSorter(true);
+        tblData.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "City", "Degree"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblData.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblData);
+
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("First Name");
-
-        btnProcess2.setText("Process");
-        btnProcess2.addActionListener(new java.awt.event.ActionListener() {
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcess2ActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("Comment");
-
-        taComment.setColumns(20);
-        taComment.setLineWrap(true);
-        taComment.setRows(5);
-        jScrollPane1.setViewportView(taComment);
-
-        jButton2.setText("Process");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnClearActionPerformed(evt);
             }
         });
 
@@ -180,69 +184,75 @@ public class MainUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbl_abcFirst)
-                                .addGap(29, 29, 29)
-                                .addComponent(jLabel1))
+                                .addContainerGap()
+                                .addComponent(btnClear)
+                                .addGap(121, 121, 121)
+                                .addComponent(name)
+                                .addGap(20, 20, 20)
+                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbl2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(212, 212, 212)
+                                .addComponent(city)
+                                .addGap(36, 36, 36)
+                                .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(lbl2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel7))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(212, 212, 212)
+                                .addComponent(degree)
+                                .addGap(12, 12, 12)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel2)
-                                                .addGap(148, 148, 148)
-                                                .addComponent(jLabel3))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnProcess)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jButton1)))
+                                        .addComponent(btnAdd)
                                         .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnProcess2)
-                                            .addComponent(txtUserInput, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(34, 34, 34)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(jButton2)))
-                .addContainerGap(88, Short.MAX_VALUE))
+                                        .addComponent(btnDelete))
+                                    .addComponent(txtDegree, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(lbl_abcFirst))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(txtUserInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl2)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnProcess)
-                                .addComponent(jButton1))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(btnProcess2)))
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addContainerGap(133, Short.MAX_VALUE))
+                                .addComponent(name)
+                                .addComponent(btnClear))
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(city)
+                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(degree))
+                            .addComponent(txtDegree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 158, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAdd)
+                            .addComponent(btnDelete))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(lbl2)
+                .addGap(44, 44, 44)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -264,50 +274,40 @@ public class MainUI extends javax.swing.JFrame {
         new AboutUI().setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(MainUI.this, "Button is pressed....");
-        lbl_abcFirst.setText("Button Pressed Text Change...");
-        lbl2.setText("I Love You...");
-    }//GEN-LAST:event_btnProcessActionPerformed
-
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(MainUI.this, " Mouse Clicked On Window ");
+        tblData.clearSelection();
     }//GEN-LAST:event_formMouseClicked
 
-    private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(MainUI.this, "Cursor exited from lable");
-    }//GEN-LAST:event_jLabel2MouseExited
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(MainUI.this , "Button Click....");
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void btnProcess2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcess2ActionPerformed
-        // TODO add your handling code here:
-        if(txtUserInput.getText().trim().isEmpty()){
-            JOptionPane.showMessageDialog(MainUI.this, "Enter Your Name.");
-            txtUserInput.grabFocus();
-            return;
-        }else{
-            JOptionPane.showMessageDialog(MainUI.this, "Input: "+ txtUserInput.getText());
+        if(validateFields()){
+            model.insertRow(tblData.getRowCount(), new Object[]{
+                txtName.getText(),
+                txtCity.getText(),
+                txtDegree.getText()
+            });
+            
+            resetFields();
         }
-    }//GEN-LAST:event_btnProcess2ActionPerformed
+        
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        if( taComment.getText().trim().isEmpty() ){
-            JOptionPane.showMessageDialog(MainUI.this, "Enter any comment...");
-            taComment.grabFocus();
+        if(tblData.getSelectedRow() == -1){
+            JOptionPane.showMessageDialog(MainUI.this, "Select any row from table...");
             return;
         }
         
-        JOptionPane.showMessageDialog(MainUI.this, "Input: "+taComment.getText());
-        taComment.setText("");
-    }//GEN-LAST:event_jButton2ActionPerformed
+        
+        model.removeRow(tblData.getSelectedRow());
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+        model.setRowCount(0);
+    }//GEN-LAST:event_btnClearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -343,16 +343,44 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
     }
+    
+    private boolean validateFields(){
+        if ( txtName.getText().trim().isEmpty() ){
+            JOptionPane.showMessageDialog(MainUI.this, "Enter any name: ");
+            txtName.grabFocus();
+            return false;
+        }
+        
+        if( txtCity.getText().trim().isEmpty() ){
+            JOptionPane.showMessageDialog(MainUI.this, "Enter any city: ");
+            txtCity.grabFocus();
+            return false;
+        }
+        
+        if (txtDegree.getText().trim().isEmpty() ){
+            JOptionPane.showMessageDialog(MainUI.this, "Enter any degree: ");
+            txtDegree.grabFocus();
+            return false;
+        }
+        
+        return true;
+        
+        
+    };
+    
+    private void resetFields(){
+        txtName.setText("");
+        txtCity.setText("");
+        txtDegree.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnProcess;
-    private javax.swing.JButton btnProcess2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JLabel city;
+    private javax.swing.JLabel degree;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -367,9 +395,11 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lbl2;
-    private javax.swing.JLabel lbl_abcFirst;
     private javax.swing.JMenuBar mnuTest;
-    private javax.swing.JTextArea taComment;
-    private javax.swing.JTextField txtUserInput;
+    private javax.swing.JLabel name;
+    private javax.swing.JTable tblData;
+    private javax.swing.JTextField txtCity;
+    private javax.swing.JTextField txtDegree;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }
