@@ -3,9 +3,8 @@ public class First {
     
     public static void main(String[] args) {
         
-       String nameString = "     MD.Kamrul Hasan     ";
-        print(nameString);
-        print(nameString.trim()+"");
+        Student student1 = new Student("Kamrul", 47, "1999-12-08", "CSE");
+        student1.Admin();
         
     }
     
